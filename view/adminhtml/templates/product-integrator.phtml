@@ -1,0 +1,225 @@
+<?php
+/**
+ * Leandro Rosa
+ *
+ * NOTICE OF LICENSE
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Doris Module to newer
+ * versions in the future. If you wish to customize it for your
+ * needs please refer to https://developer.adobe.com/commerce/docs/ for more information.
+ *
+ * @category LeandroRosa
+ *
+ * @copyright Copyright (c) 2024 Leandro Rosa (https:www.rosa-planet.com.br)
+ *
+ * @author Leandro Rosa <dev.leandrorosa@gmail.com>
+ */
+declare(strict_types=1);
+
+/**
+ * @var \LeandroRosa\DorisCatalogIntegrator\Block\Adminhtml\Form\Field\Buttons\ProductIntegrator $block
+ * @see \LeandroRosa\DorisCatalogIntegrator\Block\Adminhtml\Form\Field\Buttons\ProductIntegrator
+ */
+?>
+
+<style>
+
+    .loading-text {
+        float: left;
+        animation: pulse 1.5s ease-in-out infinite alternate;
+        padding: 7px 15px;
+        background: #00a2ff;
+        color: #fff;
+        border-radius: 5px 10px 0 0;
+    }
+
+    @keyframes pulse {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+
+    .doris-pipeline-container {
+        background-color: #222;
+        padding: 20px;
+        border-radius: 10px;
+        border: 2px solid #444;
+    }
+
+    .doris-pipeline-title {
+        color: #fff;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .doris-pipeline-description {
+        color: #ccc;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .doris-pipeline-console-container {
+        background-color: #333;
+        border-radius: 8px;
+        margin: 12px 0;
+        border: 1px solid #444;
+        overflow: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #00a2ff #333;
+        margin: 25px 0 0;
+    }
+
+    .doris-pipeline-console-items::-webkit-scrollbar,
+    .doris-pipeline-console::-webkit-scrollbar {
+        width: 8px; /* Largura do scroll */
+    }
+
+    .doris-pipeline-console-items::-webkit-scrollbar-thumb,
+    .doris-pipeline-console::-webkit-scrollbar-thumb {
+        background-color: #00a2ff; /* Cor do thumb do scroll */
+        border-radius: 4px;
+    }
+
+    .doris-pipeline-console-items::-webkit-scrollbar-thumb:hover,
+    .doris-pipeline-console::-webkit-scrollbar-thumb:hover {
+        background-color: #0077cc; /* Cor do thumb do scroll quando hover */
+    }
+
+    .doris-pipeline-console,
+    .doris-pipeline-console {
+        color: #ccc;
+        line-height: 1.5;
+        margin-bottom: 0;
+        height: 600px;
+        overflow-y: auto;
+        white-space: pre-wrap;
+        padding: 10px;
+        border: 1px solid #004f7d;
+        margin: 15px;
+        padding-bottom: 25px;
+        padding-left: 25px;
+        box-shadow: 0px 0px 12px #020202;
+        border-radius: 5px;
+    }
+
+    .doris-pipeline-console .log-line {
+        display: block;
+        margin-top: 5px;
+        padding: 5px 0;
+    }
+
+    .doris-pipeline-console .log-identifier {
+        color: #00a2ff;
+    }
+
+    .doris-pipeline-console .log-item {
+        color: #ff69b4; /* Cor rosa para o SKU */
+    }
+
+    .doris-pipeline-console .log-success {
+        color: #5af457 !important; /* Cor verde para mensagem de sucesso */
+    }
+
+    .doris-pipeline-console .log-error {
+        color: #f55 !important;
+    }
+
+    .doris-pipeline-container .secondary[data-bind*="Start Integration"] {
+        background-color: #00a2ff;
+        border-color: #00a2ff;
+        color: #fff;
+        width: 100%; /* Adicionando largura de 100% */
+        display: block; /* Tornando o botão um elemento de bloco */
+        margin-top: 20px; /* Adicionando um espaçamento superior para separar do conteúdo acima */
+    }
+
+    .doris-pipeline-container .secondary[data-bind*="Flush Pipelines Integration"] {
+        background-color: #a10676;
+        border-color: #a10676;
+        color: #fff;
+        width: 100%; /* Adicionando largura de 100% */
+        display: block; /* Tornando o botão um elemento de bloco */
+        margin-top: 20px; /* Adicionando um espaçamento superior para separar do conteúdo acima */
+    }
+
+    .doris-pipeline-container .secondary[data-bind*="Start Integration"]:hover {
+        background-color: #00a2ff;
+        border-color: #00a2ff;
+    }
+
+    .doris-response-item {
+        color: #ff69b4; /* Cor rosa para o SKU */
+    }
+
+    .doris-item-list-container {
+        margin: 0;
+        padding: 0;
+    }
+
+    .doris-item-list {
+        padding-left: 0;
+        margin-left: 35px;
+    }
+
+    .doris-copy-result {
+        float: right;
+    }
+
+    .doris-error {
+        margin: 10px 0;
+        border-left: 1px solid #f55;
+        color: #ff69b4 !important;
+        padding: 5px 10px;
+    }
+
+    .doris-pink {
+        color: #ff69b4
+    }
+
+    .doris-green {
+        color: #5af457
+    }
+
+    .doris-info {
+        margin: 10px 0;
+        border: 1px solid #2b8128;
+        text-align: center;
+        color: #5af457 !important;
+        padding: 5px 10px;
+    }
+
+    .doris-item {
+        margin: 10px 0;
+        color: #5af457 !important;
+        padding: 5px 10px;
+    }
+
+</style>
+
+<div data-bind="scope: 'doris-product-integrator'" class="doris-product-integrator-container">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+
+<div id="xterm-container"></div>
+
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "doris-product-integrator": {
+                        "options": <?= $block->getJsonConfig() ?>,
+                        "component": "LeandroRosa_DorisCatalogIntegrator/js/product-integrator",
+                        "template": "LeandroRosa_DorisCatalogIntegrator/product-integrator"
+                    }
+                }
+            }
+        }
+    }
+</script>

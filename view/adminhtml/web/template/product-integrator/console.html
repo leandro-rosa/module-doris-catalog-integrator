@@ -1,0 +1,19 @@
+<!--
+/**
+ * Copyright © Leandro Rosa
+ */
+-->
+<div class="doris-pipeline-console-container">
+        <pre id="doris-pipeline-console" class="doris-pipeline-console">
+            <pre id="doris-pipeline-console-items"></pre>
+        </pre>
+    <div class="doris-toolbar">
+        <strong class="loading-text" data-bind="i18n: 'Sending products...', visible: isLocked()"></strong>
+        <button type="button" class="doris-copy-result secondary"
+                data-bind="click: dorisConsole.copyConsoleTextToClipboard, i18n: 'Copy Report'"></button>
+    </div>
+</div>
+<button type="button" class="secondary"
+        data-bind="i18n: 'Start Integration', click: startPipeline, visible: ! isLocked()"></button>
+<button type="button" class="secondary"
+        data-bind="i18n: 'Flush Pipelines Integration', click: flushPipelines, visible: ! isLocked()"></button>

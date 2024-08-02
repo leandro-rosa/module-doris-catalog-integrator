@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Leandro Rosa
+ *
+ * NOTICE OF LICENSE
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Doris Module to newer
+ * versions in the future. If you wish to customize it for your
+ * needs please refer to https://developer.adobe.com/commerce/docs/ for more information.
+ *
+ * @category LeandroRosa
+ *
+ * @copyright Copyright (c) 2024 Leandro Rosa (https:www.rosa-planet.com.br)
+ *
+ * @author Leandro Rosa <dev.leandrorosa@gmail.com>
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/doris/product/create-doris-product" method="POST">
+        <service class="LeandroRosa\DorisCatalogIntegrator\Api\CatalogIntegratorApiInterface" method="createDorisProduct"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/doris/product/create-pipeline" method="POST">
+        <service class="LeandroRosa\DorisCatalogIntegrator\Api\CatalogIntegratorApiInterface" method="createPipeline"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/doris/product/flush-pipelines" method="DELETE">
+        <service class="LeandroRosa\DorisCatalogIntegrator\Api\CatalogIntegratorApiInterface" method="flushPipelines"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

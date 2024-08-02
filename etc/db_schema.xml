@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Leandro Rosa
+ *
+ * NOTICE OF LICENSE
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Doris Module to newer
+ * versions in the future. If you wish to customize it for your
+ * needs please refer to https://developer.adobe.com/commerce/docs/ for more information.
+ *
+ * @category LeandroRosa
+ *
+ * @copyright Copyright (c) 2024 Leandro Rosa (https:www.rosa-planet.com.br)
+ *
+ * @author Leandro Rosa <dev.leandrorosa@gmail.com>
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="doris_export_pipeline" resource="default" engine="innodb" comment="Doris Export Pipeline">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Doris Pipeline ID"/>
+        <column xsi:type="smallint" name="run_website_id" unsigned="true" nullable="false" comment="Website ID"/>
+        <column xsi:type="varchar" name="run_by" nullable="false" length="255" comment="Doris Pipeline Run By"/>
+        <column xsi:type="text" name="associated_categories" nullable="false" comment="Doris Pipeline Associated Categories"/>
+
+        <column name="created_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="false"/>
+        <column name="updated_at" nullable="true" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+
+        <constraint xsi:type="foreign" referenceId="DORIS_EXPORT_PIPELINE_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID"
+                    table="doris_export_pipeline" column="run_website_id" referenceTable="store_website"
+                    referenceColumn="website_id" onDelete="CASCADE"/>
+
+        <index referenceId="DORIS_EXPORT_PIPELINE_RUN_WEBSITE_ID" indexType="btree">
+            <column name="run_website_id"/>
+        </index>
+
+        <index referenceId="DORIS_EXPORT_PIPELINE_RUN_BY" indexType="btree">
+            <column name="run_by"/>
+        </index>
+
+    </table>
+
+    <table name="doris_export_pipeline_item" resource="default" engine="innodb" comment="Doris Export Pipeline Item">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Doris Pipeline Item ID"/>
+        <column xsi:type="int" name="pipeline_id" padding="10"  unsigned="true" nullable="false" comment="Doris Pipeline Item Pipeline ID"/>
+        <column xsi:type="varchar" name="doris_identifier" nullable="false" length="64" comment="Doris Pipeline Item Doris Identifier"/>
+        <column xsi:type="int" name="product_id" unsigned="true" nullable="false" comment="Doris Pipeline Item Product ID"/>
+        <column xsi:type="int" name="product_parent_id" unsigned="true" nullable="false" comment="Doris Pipeline Item Product Parent ID"/>
+        <column xsi:type="varchar" name="status" nullable="false" length="20" comment="Doris Pipeline Item Status"/>
+
+        <column name="created_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="false"/>
+        <column name="updated_at" nullable="true" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+
+        <constraint xsi:type="foreign" referenceId="DORIS_EXPORT_PIPELINE_ITEM_PIPELINE_ID_DORIS_EXPORT_PIPELINE_ENTITY_ID"
+                    table="doris_export_pipeline_item" column="pipeline_id" referenceTable="doris_export_pipeline"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+
+        <constraint xsi:type="foreign" referenceId="DORIS_EXPORT_PIPELINE_ITEM_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID"
+                    table="doris_export_pipeline_item" column="product_id" referenceTable="catalog_product_entity"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+
+        <constraint xsi:type="foreign" referenceId="DORIS_EXPORT_PIPELINE_ITEM_PRODUCT_PARENT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID"
+                    table="doris_export_pipeline_item" column="product_parent_id" referenceTable="catalog_product_entity"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+
+        <constraint xsi:type="unique" referenceId="DORIS_EXPORT_PIPELINE_ITEM_PRODUCT_ID_UNIQUE">
+            <column name="product_id"/>
+        </constraint>
+
+        <index referenceId="DORIS_EXPORT_PIPELINE_ITEM_DORIS_IDENTIFIER" indexType="btree">
+            <column name="doris_identifier"/>
+        </index>
+
+        <index referenceId="DORIS_EXPORT_PIPELINE_ITEM_PRODUCT_PARENT_ID" indexType="btree">
+            <column name="product_parent_id"/>
+        </index>
+
+        <index referenceId="DORIS_EXPORT_PIPELINE_ITEM_PIPELINE_ID" indexType="btree">
+            <column name="pipeline_id"/>
+        </index>
+    </table>
+</schema>

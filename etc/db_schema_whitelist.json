@@ -1,0 +1,47 @@
+{
+    "doris_export_pipeline": {
+        "column": {
+            "entity_id": true,
+            "run_by": true,
+            "status": true,
+            "associated_categories": true,
+            "created_at": true,
+            "updated_at": true,
+            "run_website_id": true
+        },
+        "index": {
+            "DORIS_EXPORT_PIPELINE_STATUS": true,
+            "DORIS_EXPORT_PIPELINE_RUN_BY": true,
+            "DORIS_EXPORT_PIPELINE_RUN_WEBSITE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "DORIS_EXPORT_PIPELINE_RUN_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID": true
+        }
+    },
+    "doris_export_pipeline_item": {
+        "column": {
+            "entity_id": true,
+            "pipeline_id": true,
+            "doris_identifier": true,
+            "product_id": true,
+            "status": true,
+            "created_at": true,
+            "updated_at": true,
+            "product_parent_id": true
+        },
+        "index": {
+            "DORIS_EXPORT_PIPELINE_ITEM_DORIS_IDENTIFIER": true,
+            "DORIS_EXPORT_PIPELINE_ITEM_PIPELINE_ID": true,
+            "DORIS_EXPORT_PIPELINE_ITEM_PRODUCT_ID": true,
+            "DORIS_EXPORT_PIPELINE_ITEM_PRODUCT_PARENT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_C58F8F3AB49F2E50C4F8DEDA35E66829": true,
+            "DORIS_EXPORT_PIPELINE_ITEM_PRD_ID_CAT_PRD_ENTT_ENTT_ID": true,
+            "DORIS_EXPORT_PIPELINE_ITEM_PRODUCT_ID": true,
+            "DORIS_EXPORT_PIPELINE_ITEM_PRD_PARENT_ID_CAT_PRD_ENTT_ENTT_ID": true
+        }
+    }
+}

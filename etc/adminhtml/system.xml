@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Leandro Rosa
+ *
+ * NOTICE OF LICENSE
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Doris Module to newer
+ * versions in the future. If you wish to customize it for your
+ * needs please refer to https://developer.adobe.com/commerce/docs/ for more information.
+ *
+ * @category LeandroRosa
+ *
+ * @copyright Copyright (c) 2024 Leandro Rosa (https:www.rosa-planet.com.br)
+ *
+ * @author Leandro Rosa <dev.leandrorosa@gmail.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+
+        <section id="doris_catalog_integrator" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Catalog Integrator</label>
+            <tab>doris</tab>
+            <resource>LeandroRosa_DorisCatalogIntegrator::config</resource>
+
+            <group id="actions" translate="label" type="text" sortOrder="10" showInDefault="0" showInWebsite="1" showInStore="0">
+                <label>Doris Actions</label>
+
+                <field id="product_integrator" translate="label comment" type="button" sortOrder="10" showInDefault="0" showInWebsite="1" showInStore="0">
+                    <label><![CDATA[Product Integrator]]></label>
+                    <frontend_model>LeandroRosa\DorisCatalogIntegrator\Block\Adminhtml\Form\Field\Buttons\ProductIntegrator</frontend_model>
+                </field>
+            </group>
+
+            <group id="categories_association" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Categories Association</label>
+
+                <field id="association_map" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Association Map</label>
+                    <frontend_model>LeandroRosa\DorisCatalogIntegrator\Block\Adminhtml\Form\Field\CategoriesAssociation</frontend_model>
+                    <backend_model>LeandroRosa\DorisCatalogIntegrator\Model\SourceModel\Config\Backend\CategoriesAssociation</backend_model>
+                </field>
+            </group>
+
+            <group id="product_attributes" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Product Attributes</label>
+
+                <field type="select" id="size" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Size Attribute</label>
+                    <source_model>LeandroRosa\DorisCatalogIntegrator\Model\SourceModel\Config\ProductAttributes</source_model>
+                </field>
+
+                <field type="select" id="color" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Color Attribute</label>
+                    <source_model>LeandroRosa\DorisCatalogIntegrator\Model\SourceModel\Config\ProductAttributes</source_model>
+                </field>
+
+                <field type="select" id="brand" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Brand Attribute</label>
+                    <source_model>LeandroRosa\DorisCatalogIntegrator\Model\SourceModel\Config\ProductAttributes</source_model>
+                </field>
+
+            </group>
+        </section>
+
+    </system>
+</config>

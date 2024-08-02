@@ -1,0 +1,20 @@
+{
+  "name": "leandro-rosa/module-doris-catalog-integrator",
+  "version": "1.0.0",
+  "description": "Doris Mobi Catalog Integrator Module",
+  "type": "magento2-module",
+  "require": {
+    "magento/framework": "*"
+  },
+  "license": [
+    "Proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "LeandroRosa\\DorisCatalogIntegrator\\": ""
+    }
+  }
+}
